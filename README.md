@@ -2,6 +2,15 @@
 
 开源LLM模型发展和迭代很快，尤其是在国内。本文介绍如何在Azure上部署开源模型，如ChatGLM, LLAMA 2等等。可以直接部署，也可以使用开源工具，如FastChat, DB-GPT等。本文以ChatGLM为例，介绍如何在Azure上部署开源模型。
 
+## 部署ChatGLM3-6B
+[ChatGLM3-6B On Azure 部署指南](./chatglm3.md)
+
+## 使用FastChat来部署各种开源模型on Azure
+[使用FastChat来部署开源模型on Azure](./fastchat.md)
+
+<hr/>
+在部署之前，需要先准备好Azure环境。如下使用Azure VM CentOS 7.9 作为例子，介绍如何准备环境。
+
 ## 环境准备
 1. 创建Azure VM
 最好使用GPU机型，如Standard NC24ads A100 v4。如果想尝试多个模型，建议用1TB以上的硬盘，因为模型文件很大。
@@ -57,44 +66,16 @@ sudo yum install git-lfs -y
 
 
 ```
-
-## 部署ChatGLM
-1. 准备chatglm环境
+5. GPU环境准备 (如果是GPU机型)
 ```bash
-conda create -n chatglm python=3.10 -y
-conda activate chatglm
-```
-2. 下载ChatGLM代码
-```bash
-cd ~
-git clone https://github.com/THUDM/ChatGLM3
-cd ChatGLM3
-pip install -r requirements.txt
+lspci | grep -i nvidia
+# 如果没有输出，需要安装NVIDIA A100驱动
+# https://learn.microsoft.com/zh-cn/azure/virtual-machines/linux/n-series-driver-setup
 
+# 安装完成后，重启虚机，运行下面命令，确认驱动安装成功
+nvidia-smi
 ```
-3. 下载模型文件
-```bash
-cd basic_demo
-python cli_demo.py
-```
-第一次运行会下载模型文件，模型文件很大，需要等待一段时间。Azure的网速很快，大概需要1分钟左右。
-![ChatGLM](./img/chatglm_cli.png)
+![nvidia-smi](./img/nvidia-smi.png)
 
-4. 启动Web服务
-```bash
-pip install jupyter_client
-cd composite_demo
-streamlit run main.py
-```
-![web run](./img/chatglm_streamlit.png)
-在虚机的NSG中，打开8501端口，就可以在浏览器中访问了。
-![NSG](./img/NSG8501.png)
-![web](./img/chatglm_streamlit_web.png)
 
-如果需要后台运行，可以使用nohup
-```bash
-nohup streamlit run main.py &
-```
 
-其他的使用方法，可以参考:
-https://github.com/THUDM/ChatGLM3/blob/main/composite_demo/README.md
