@@ -2,10 +2,10 @@
 
 开源LLM模型发展和迭代很快，尤其是在国内。本文介绍如何在Azure上部署开源模型，如ChatGLM, LLAMA 2等等。可以直接部署，也可以使用开源工具，如FastChat, DB-GPT等。本文以ChatGLM为例，介绍如何在Azure上部署开源模型。
 
-## 部署ChatGLM3-6B
+## 直接部署ChatGLM3-6B
 [ChatGLM3-6B On Azure 部署指南](./chatglm3.md)
 
-## 使用FastChat来部署各种开源模型on Azure
+## 使用FastChat来部署各种开源模型
 [使用FastChat来部署开源模型on Azure](./fastchat.md)
 
 <hr/>
