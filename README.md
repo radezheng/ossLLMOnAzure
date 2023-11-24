@@ -52,7 +52,7 @@ mkdir /data/conda
 cd /data/conda
 wget https://repo.anaconda.com/archive/Anaconda3-2023.09-0-Linux-x86_64.sh
 bash Anaconda3-2023.09-0-Linux-x86_64.sh
-# 一路回车
+# 回车，空格..yes, 一路回车
 
 # 安装完成后
 cd /home/myadmin/anaconda3/bin
@@ -60,6 +60,7 @@ cd /home/myadmin/anaconda3/bin
 source ~/.bashrc
 
 # 安装git
+sudo yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
 sudo yum install git -y
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
 sudo yum install git-lfs -y

@@ -40,7 +40,7 @@ streamlit run main.py
 
 如果需要后台运行，可以使用nohup
 ```bash
-nohup streamlit run main.py &
+nohup streamlit run main.py 2>&1 &
 ```
 
 其他的使用方法，可以参考:

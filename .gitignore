@@ -1,5 +1,2 @@
 .env
-centos.sh
-dbgpt.sh
-fastchat.sh
-ubuntu.sh
+*.sh
