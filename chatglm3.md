@@ -24,12 +24,13 @@ pip install -r requirements.txt
 cd basic_demo
 python cli_demo.py
 ```
-第一次运行会下载模型文件，模型文件很大，需要等待一段时间。Azure的网速很快，大概需要1分钟左右。
+第一次运行会下载模型文件，模型文件很大，需要等待一段时间。Azure的网速很快，大概需要5分钟左右。
 ![ChatGLM](./img/chatglm_cli.png)
 
 4. 启动Web服务
 ```bash
 pip install jupyter_client
+cd ~/ChatGLM3
 cd composite_demo
 streamlit run main.py
 ```

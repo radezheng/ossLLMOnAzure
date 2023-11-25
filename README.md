@@ -9,7 +9,7 @@
 [使用FastChat来部署开源模型on Azure](./fastchat.md)
 
 <hr/>
-在部署之前，需要先准备好Azure环境。如下使用Azure VM CentOS 7.9 作为例子，介绍如何准备环境。
+在部署之前，需要先准备好Azure环境。如下使用Azure VM Ubuntu 22 作为例子，介绍如何准备环境。
 
 ## 环境准备
 1. 创建Azure VM
@@ -22,13 +22,13 @@
 sudo -i
 
 fdisk -l
-fdisk /dev/sdc
+fdisk /dev/sda
 # n, p, 1, enter, enter, w
-mkfs -t ext4 /dev/sdc1
+mkfs -t ext4 /dev/sda1
 
 mkdir /data
 
-echo "/dev/sdc1 /data ext4 defaults 0 0" >> /etc/fstab
+echo "/dev/sda1 /data ext4 defaults 0 0" >> /etc/fstab
 
 mount -a
 
@@ -59,11 +59,16 @@ cd /home/myadmin/anaconda3/bin
 ./conda init
 source ~/.bashrc
 
-# 安装git
+# 安装git (centos)
 sudo yum -y install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
 sudo yum install git -y
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
 sudo yum install git-lfs -y
+
+# 安装git (ubuntu)
+sudo apt-get update
+sudo apt-get install git -y
+sudo apt-get install git-lfs -y
 
 
 ```
